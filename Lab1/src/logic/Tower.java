@@ -1,29 +1,29 @@
 package logic;
 
 public class Tower {
-    private final Rod left;
-    private final Rod middle;
-    private final Rod right;
+    private final Rod leftRod;
+    private final Rod middleRod;
+    private final Rod rightRod;
 
     private int moves;
-    private final int totalNoOfDisks;
+    private final int totalNoDisks;
 
     public Tower(int noOfDisks) {
-        totalNoOfDisks = noOfDisks;
+        this.totalNoDisks = noOfDisks;
 
-        this.right = new Rod(totalNoOfDisks);
-        this.middle = new Rod(totalNoOfDisks);
-        this.left = new Rod(totalNoOfDisks);
+        this.rightRod = new Rod(totalNoDisks);
+        this.middleRod = new Rod(totalNoDisks);
+        this.leftRod = new Rod(totalNoDisks);
     }
 
     public void initNewGame() {
-        this.left.clear();
-        this.middle.clear();
-        this.right.clear();
-        moves = 0;
+        this.leftRod.clear();
+        this.middleRod.clear();
+        this.rightRod.clear();
+        this.moves = 0;
 
-        for (int i = totalNoOfDisks; i > 0; i--) {
-            left.push(new Disk(i, Color.WHITE));
+        for (int i = totalNoDisks; i > 0; i--) {
+            leftRod.push(new Disk(i, Color.WHITE));
         }
     }
 
@@ -32,7 +32,7 @@ public class Tower {
     }
 
     public int getNoOfDisks() {
-        return totalNoOfDisks;
+        return totalNoDisks;
     }
 
     public boolean isLegalMove(RodPos fromPos, RodPos toPos) {
@@ -40,7 +40,7 @@ public class Tower {
         Rod toRod = getRod(toPos);
 
         if (fromRod.isEmpty()) return false;
-        else return fromRod.peek().diameter() < toRod.peek().diameter() || toRod.isEmpty();
+        else return toRod.isEmpty() || fromRod.peek().diameter() < toRod.peek().diameter();
     }
 
     public void makeMove(RodPos fromPos, RodPos toPos) {
@@ -59,7 +59,7 @@ public class Tower {
     }
 
     public boolean isSolved() {
-        return this.right.getNumberOfDisks() == this.totalNoOfDisks;
+        return this.rightRod.getNumberOfDisks() == this.totalNoDisks;
     }
 
     public Disk[] getDisks(RodPos pos) {
@@ -68,9 +68,9 @@ public class Tower {
 
     private Rod getRod(RodPos rodPos) {
         return switch (rodPos) {
-            case LEFT -> this.left;
-            case MIDDLE -> this.middle;
-            case RIGHT -> this.right;
+            case LEFT -> this.leftRod;
+            case MIDDLE -> this.middleRod;
+            case RIGHT -> this.rightRod;
         };
     }
 }
