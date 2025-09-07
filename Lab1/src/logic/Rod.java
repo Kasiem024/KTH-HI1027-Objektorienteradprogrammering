@@ -21,6 +21,10 @@ public class Rod {
         return numOfDisks;
     }
 
+    public int getMaxNumberOfDisks (){
+        return diskArr.length;
+    }
+
     public boolean isEmpty() {
         return numOfDisks == 0;
     }

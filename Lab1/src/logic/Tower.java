@@ -51,7 +51,6 @@ public class Tower {
         Disk movingDisk = fromRod.pop();
         toRod.push(movingDisk);
 
-//        getRod(toPos).push(getRod(fromPos).pop());
         this.moves++;
     }
 
