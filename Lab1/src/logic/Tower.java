@@ -44,9 +44,6 @@ public class Tower {
     }
 
     public void makeMove(RodPos fromPos, RodPos toPos) {
-        if (!isLegalMove(fromPos, toPos)) {
-            throw new IllegalStateException("Illegal move.");
-        }
 
         Rod fromRod = getRod(fromPos);
         Rod toRod = getRod(toPos);
@@ -59,7 +56,20 @@ public class Tower {
     }
 
     public boolean isSolved() {
-        return this.rightRod.getNumberOfDisks() == this.totalNoDisks;
+
+        if (this.rightRod.getNumberOfDisks() == this.totalNoDisks) {
+
+            Disk[] rightRodDisks = getDisks(RodPos.RIGHT);
+
+            for (int i = 1; i < totalNoDisks; i++) {
+                System.out.println(rightRodDisks[i].diameter());
+                if (rightRodDisks[i - 1].diameter() < rightRodDisks[i].diameter()) {
+                    return false;
+                }
+            }
+            return true;
+
+        } else return false;
     }
 
     public Disk[] getDisks(RodPos pos) {
@@ -72,5 +82,16 @@ public class Tower {
             case MIDDLE -> this.middleRod;
             case RIGHT -> this.rightRod;
         };
+    }
+
+    @Override
+    public String toString() {
+        return "Tower{" +
+                "leftRod=" + leftRod +
+                ", middleRod=" + middleRod +
+                ", rightRod=" + rightRod +
+                ", moves=" + moves +
+                ", totalNoDisks=" + totalNoDisks +
+                '}';
     }
 }
