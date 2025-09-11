@@ -45,6 +45,8 @@ public class Tower {
 
     public void makeMove(RodPos fromPos, RodPos toPos) {
 
+        if (!isLegalMove(fromPos, toPos)) throw new IllegalArgumentException("Move from " + fromPos + " to "+toPos+" is not legal");
+
         Rod fromRod = getRod(fromPos);
         Rod toRod = getRod(toPos);
 
@@ -55,6 +57,7 @@ public class Tower {
     }
 
     public boolean isSolved() {
+
 
         if (this.rightRod.getNumberOfDisks() == this.totalNoDisks) {
 
