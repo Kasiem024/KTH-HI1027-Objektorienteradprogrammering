@@ -1,3 +1,5 @@
+package Exercise2;
+
 /**
  * Represents an classes_objects.immutable playing card, with rank and suit.
  */
@@ -30,7 +32,7 @@ public class Card {
     @Override
     public boolean equals(Object other) {
         if(other instanceof Card) {
-            Card otherCard = (Card) other; // downcast reference type to Card
+            Card otherCard = (Card) other; // downcast reference type to Exercise2.Card
             return this.rank == otherCard.rank && this.suit == otherCard.suit;
         }
         return false;

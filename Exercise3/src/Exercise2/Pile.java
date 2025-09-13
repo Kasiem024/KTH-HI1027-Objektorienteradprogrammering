@@ -1,3 +1,5 @@
+package Exercise2;
+
 import java.util.ArrayList;
 
 public class Pile {
@@ -30,7 +32,7 @@ public class Pile {
 
     @Override
     public String toString() {
-        return "Pile{" +
+        return "Exercise2.Pile{" +
                 "cards=" + cards +
                 '}';
     }

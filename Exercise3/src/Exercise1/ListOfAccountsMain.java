@@ -1,3 +1,5 @@
+package Exercise1;
+
 public class ListOfAccountsMain {
 
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class ListOfAccountsMain {
 
         System.out.println(list.toString());
 
-        // Search for a specific Account
+        // Search for a specific Exercise1.Account
         System.out.println("Searching...");
         Account x;
         x = list.findAccount("Per");
